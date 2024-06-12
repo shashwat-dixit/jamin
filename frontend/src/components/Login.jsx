@@ -8,6 +8,7 @@ export default function Login() {
                 <input className="px-8 py-4 my-4 rounded" type="password" id="user_password" name="user_password" placeholder="Password"/>
                 <button type="submit">Sign In</button>
             </Form>
+            <h1 className="mt-4 text-xl px-8 my-3">Forgot my password!</h1>
             <h1 className="mt-4 text-xl px-8 my-3">Don&apos;t have an account?</h1>
             <Navigate to="/signup">Sign Up</Navigate>
         </div>
