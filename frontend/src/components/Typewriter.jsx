@@ -33,7 +33,7 @@ const Typewriter = () => {
     }, [text, currentIndex, isDeleting, words]);
 
     return (
-        <h1 className="p-2 text-2xl sm:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
+        <h1 className="p-2 text-2xl sm:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 h-24">
             {text}
         </h1>
     );
