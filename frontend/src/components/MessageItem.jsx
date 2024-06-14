@@ -1,15 +1,23 @@
 
-const MessageItem = ({ message }) => {
-  const { text, sender, timestamp } = message;
-  const isUser = sender === 'user';
 
+const MessageItem = ({ messages, currentUser }) => {
   return (
-    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-2`}>
-      <div className={`max-w-xs p-2 rounded-lg ${isUser ? 'bg-blue-200' : 'bg-gray-200'}`}>
-        <span className="block">{text}</span>
-        <span className="text-xs text-gray-500 mt-1 block">{new Date(timestamp).toLocaleTimeString()}</span>
-      </div>
-    </div>
+    <>
+      {messages.map((message, index) => (
+        <div key={index} className={`chat ${message.sender === currentUser ? 'chat-end' : 'chat-start'}`}>
+          <div className="chat-header">
+            {message.sender}
+            <time className="ml-2 text-xs opacity-50">{message.time}</time>
+          </div>
+          <div className="chat-bubble max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl text-left">
+            {message.content}
+          </div>
+          <div className="chat-footer opacity-50">
+            {message.status}
+          </div>
+        </div>
+      ))}
+    </>
   );
 };
 
