@@ -1,11 +1,18 @@
 import MessageList from "./MessageList"
+import ChatHistory from "./ChatHistory" 
+import ChooseModel from "./ChooseModel"
+import DataInput from "./DataInput" 
+import InputBox from "./InputBox"
 
 
 export default function ChatWindow() {
   return (
-    <div className="flex flex-col items-center p-6">
-      <h1 className="text-2xl font-bold mb-4">Chat Interface</h1>
+    <div>
+      <ChatHistory />
       <MessageList />
+      <InputBox />
+      <ChooseModel />
+      <DataInput />
     </div>
   )
 }

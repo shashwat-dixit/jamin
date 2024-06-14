@@ -1,11 +1,16 @@
 //imports
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 
-
+// Styles
 import './App.css'
+
+// Layouts
+import RootLayout from './layouts/RootLayout'
+import ChatLayout from './layouts/ChatLayout'
+
+// Pages
 import Home from './pages/Home'
 import SignUp from './pages/SignUp'
-import RootLayout from './layouts/RootLayout'
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -15,8 +20,9 @@ function App() {
       <>
         <Route path='/' element={<RootLayout />}>
           <Route index element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/chat" element={<ChatLayout />} />
         </Route>
-        <Route path="signup" element={<SignUp />} />
         <Route path='*' element={<NotFound />} />
       </>
     )

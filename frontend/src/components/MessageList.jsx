@@ -1,20 +1,35 @@
-// src/components/MessageList.js
 
 import MessageItem from './MessageItem';
 
-const placeholderMessages = [
-  { text: 'Hello! How can I assist you today?', sender: 'bot', timestamp: Date.now() - 10000 },
-  { text: 'I need some information about your services.', sender: 'user', timestamp: Date.now() - 5000 },
-  { text: 'Sure, I can help with that! What specific information are you looking for?', sender: 'bot', timestamp: Date.now() }
-];
-
 const MessageList = () => {
+  const messages = [
+    {
+      sender: 'Llama 3',
+      time: '2 hours ago',
+      content: 'You were the Chosen One! It was said that you would destroy the Sith, not join them. Bring balance to the Force, not leave it in darkness.',
+      status: 'Seen'
+    },
+    {
+      sender: 'ChatGPT',
+      time: '2 hours ago',
+      content: 'I loved you, Anakin. You were my brother. I trusted you with my life. You were meant to bring peace and prosperity to the galaxy.',
+      status: 'Delivered'
+    },
+    {
+      sender: 'Anakin Skywalker',
+      time: '1 hour ago',
+      content: 'I hate you! You were supposed to help me save Padmé. Now, because of you, she is gone, and I am left with nothing but pain and suffering.',
+      status: 'Seen'
+    },
+  ];
+
+
+  const currentUser = 'Anakin Skywalker';
   return (
-    <div className="flex flex-col p-4 overflow-y-auto max-h-96 border border-gray-300 rounded-lg bg-gray-50">
-      {placeholderMessages.map((message, index) => (
-        <MessageItem key={index} message={message} />
-      ))}
-    </div>
+      <div className='w-5/6'>
+        <MessageItem messages={messages} currentUser={currentUser} />
+      </div>
+
   );
 };
 
