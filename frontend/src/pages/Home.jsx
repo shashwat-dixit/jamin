@@ -1,10 +1,10 @@
-import Error from "../components/Error";
+import Login from '../components/Login';
 
 
 export default function Home() {
   return (
     <div>
-      <Error />
+      <Login />
     </div>
   )
 }

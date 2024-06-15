@@ -1,6 +1,6 @@
 # LLM Aggregator
 
-An LLM Aggregator constructed using Node.js and Express for the backend, and React (with Vite) for the frontend. This project integrates multiple Large Language Models (LLMs) including OpenAI, LLaMA (via Hugging Face’s API), and Cohere AI models to facilitate users in processing and querying their own text files.
+Jamin is a LLM Aggregator constructed using Node.js and Express for the backend, and React (with Vite) for the frontend. This project integrates multiple Large Language Models (LLMs) including GPT, LLaMA (via Hugging Face’s API), Gemini and Cohere AI models to facilitate users in processing and querying their own text files.
 
 ## Features
 
