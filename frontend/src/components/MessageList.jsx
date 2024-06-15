@@ -22,13 +22,14 @@ const MessageList = () => {
       status: 'Seen'
     },
   ];
-  
+
 
   const currentUser = 'Anakin Skywalker';
   return (
-    <div>
-           <MessageItem messages={messages} currentUser={currentUser} />
-    </div>
+      <div className='w-5/6'>
+        <MessageItem messages={messages} currentUser={currentUser} />
+      </div>
+
   );
 };
 
