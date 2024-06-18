@@ -20,10 +20,9 @@ function App() {
       <>
         <Route path='/' element={<RootLayout />}>
           <Route index element={<Home />} />
-          <Route path="/chat" element={<ChatLayout />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/chat" element={<ChatLayout />} />
         </Route>
-        <Route path="signup" element={<SignUp />} />
         <Route path='*' element={<NotFound />} />
       </>
     )

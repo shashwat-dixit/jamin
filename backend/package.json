@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.ts"
   },
   "author": "",
   "license": "ISC",
@@ -17,9 +17,12 @@
     "express": "^4.19.2",
     "mongodb": "^6.7.0",
     "mongoose": "^8.4.1",
+    "pg": "^8.12.0",
     "postgres": "^3.4.4"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.22.7"
+    "@types/node": "^20.14.2",
+    "drizzle-kit": "^0.22.7",
+    "typescript": "^5.4.5"
   }
 }
