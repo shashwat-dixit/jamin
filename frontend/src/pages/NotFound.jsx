@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function NotFound() {
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center bg-gray-900 text-white overflow-hidden">
+    <div className="h-screen w-screen flex flex-col items-center justify-center text-white overflow-hidden">
       <motion.h1
         className="text-8xl sm:text-9xl font-bold mb-4"
         initial={{ y: -50, opacity: 0 }}
@@ -27,7 +27,7 @@ export default function NotFound() {
       >
         <Link
           to="/"
-          className="px-8 py-3 bg-blue-500 text-white rounded-md text-xl font-semibold hover:bg-blue-600 transition-colors duration-300"
+          className="px-8 py-3 bg-blue-500 text-white rounded-md text-xl font-semibold hover:bg-blue-600 hover:text-white transition-colors duration-300"
         >
           Go Home
         </Link>

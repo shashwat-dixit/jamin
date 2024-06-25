@@ -9,7 +9,7 @@ export default function Navbar() {
   // Simulating authentication check
   useEffect(() => {
     const checkAuth = async () => {
-      const authStatus = await new Promise(resolve => setTimeout(() => resolve(false), 5000));
+      const authStatus = await new Promise(resolve => setTimeout(() => resolve(true), 1000));
       setIsAuthenticated(authStatus);
     };
     checkAuth();
@@ -36,7 +36,7 @@ export default function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
               </motion.button>
-              <Link to="/" className="btn btn-ghost text-xl ml-2 md:ml-0">Jamin</Link>
+              <Link to="/chat" className="btn btn-ghost text-xl ml-2 md:ml-0">Jamin</Link>
             </div>
             <div className="hidden md:flex items-center space-x-4">
               <motion.div
@@ -62,8 +62,8 @@ export default function Navbar() {
                   </svg>
                 </motion.div>
                 <ul tabIndex={0} className="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-                  <li><a>Profile</a></li>
-                  <li><a>Settings</a></li>
+                  <li><Link to="/chat/profile">Profile</Link></li>
+                  <li><Link to="/chat/settings">Settings</Link></li>
                 </ul>
               </div>
             </div>
@@ -88,8 +88,8 @@ export default function Navbar() {
         >
           <input type="text" placeholder="Search" className="input input-bordered w-full mb-2" />
           <ul className="menu bg-base-100 w-full rounded-box">
-            <li><a>Profile</a></li>
-            <li><a>Settings</a></li>
+            <li><Link to="/chat/profile">Profile</Link></li>
+            <li><Link to="/chat/settings">Settings</Link></li>
           </ul>
         </motion.div>
       )}
