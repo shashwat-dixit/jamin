@@ -1,4 +1,4 @@
-
+import { motion } from 'framer-motion';
 import MessageItem from './MessageItem';
 
 const MessageList = () => {
@@ -22,14 +22,19 @@ const MessageList = () => {
       status: 'Seen'
     },
   ];
-
-
   const currentUser = 'Anakin Skywalker';
-  return (
-      <div className='w-5/6'>
-        <MessageItem messages={messages} currentUser={currentUser} />
-      </div>
 
+  return (
+    <div className="mt-20 w-full flex justify-center items-center text-gray-200 p-4">
+      <motion.div
+        className="w-full max-w-4xl h-[calc(100vh-2rem)] bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-gray-700 overflow-y-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <MessageItem messages={messages} currentUser={currentUser} />
+      </motion.div>
+    </div>
   );
 };
 
