@@ -17,6 +17,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -69,4 +70,16 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+/* typewriter css */
+@keyframes blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
 }

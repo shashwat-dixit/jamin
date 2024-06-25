@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SubmitButton from './SubmitButton';
+import SubmitButton from '../SubmitButton';
 
 export default function InputBox() {
   const [inputValue, setInputValue] = useState('');
