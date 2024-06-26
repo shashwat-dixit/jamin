@@ -1,8 +1,17 @@
 import express from 'express';
+import { isAuthenticated } from './authMiddleware.js';
 
-const router = express.Router();
+const userRouter = express.Router();
 
+// Apply the isAuthenticated middleware to all routes in this router
+userRouter.use(isAuthenticated);
 
-router.get('/', (req, res) => {
-    res.send('API is running...');
+userRouter.get('/', (req, res) => {
+  res.send('User API is running...');
 });
+
+userRouter.get('/profile', (req, res) => {
+  res.json({ message: "User profile", user: req.user });
+});
+
+export default userRouter;

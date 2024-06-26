@@ -1,12 +1,16 @@
-import express from 'express'
-import { PORT } from './config/config.js';
+import express from 'express';
+import { auth } from '@auth/express';
+import { authConfig } from './authConfig.js';
+import userRouter from './routes/userRoutes.js';
+import apiRouter from './routes/apiRoutes.js';
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+// Auth.js setup
+app.use('/auth/*', auth(authConfig));
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+// Use the userRouter for user-specific routes
+app.use('/api/users', userRouter);
+
+// Use the apiRouter for other API routes
+app.use('/api', apiRouter);

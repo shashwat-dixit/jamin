@@ -1,20 +1,22 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
-const chatSchema = new mongoose.Schema({
-  userId: { type: Number, required: true },
-  chatId: { type: String, required: true },
-  messages: [
-    {
-      prompt: { type: String, required: true },
-      response: { type: String, required: true },
-      llm: { type: String, required: true },
-      responseTime: { type: Number, required: true }, // time taken in milliseconds
-      timestamp: { type: Date, default: Date.now },
-    },
-  ],
-  createdAt: { type: Date, default: Date.now },
+const messageSchema = new mongoose.Schema({
+  sender: { type: String, enum: ['user', 'llm'], required: true },
+  content: { type: String, required: true },
+  timestamp: { type: Date, default: Date.now },
+  model: { type: String },
+  tokens: { type: Number }
 });
 
-const Chat = mongoose.model("Chat", chatSchema);
+const conversationSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, required: true },
+  title: { type: String, required: true },
+  messages: [messageSchema],
+  metadata: {
+    totalTokens: { type: Number, default: 0 },
+    language: String,
+    tags: [String]
+  }
+}, { timestamps: true });
 
-module.exports = Chat;
+export const Conversation = mongoose.model('Conversation', conversationSchema);
