@@ -9,7 +9,7 @@ export default function Navbar() {
   // Simulating authentication check
   useEffect(() => {
     const checkAuth = async () => {
-      const authStatus = await new Promise(resolve => setTimeout(() => resolve(true), 1000));
+      const authStatus = await new Promise(resolve => setTimeout(() => resolve(false), 10000));
       setIsAuthenticated(authStatus);
     };
     checkAuth();
