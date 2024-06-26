@@ -1,32 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ChatHistory() {
+  const [isOpen, setIsOpen] = useState(true);
+
   const chatData = [
-    { user: "User", message: "Hello, how are you?" },
-    { user: "ChatGPT", message: "I'm good, thank you! How can I help you today?" },
-    { user: "User", message: "Can you tell me a joke?" },
-    { user: "ChatGPT", message: "Sure! Why don't scientists trust atoms? Because they make up everything!" },
-    { user: "User", message: "Hello, how are you?" },
-    { user: "ChatGPT", message: "I'm good, thank you! How can I help you today?" },
-    { user: "User", message: "Can you tell me a joke?" },
-    { user: "ChatGPT", message: "Sure! Why don't scientists trust atoms? Because they make up everything!" },
-    { user: "User", message: "Hello, how are you?" },
-    { user: "ChatGPT", message: "I'm good, thank you! How can I help you today?" },
-    { user: "User", message: "Can you tell me a joke?" },
-    { user: "ChatGPT", message: "Sure! Why don't scientists trust atoms? Because they make up everything!" },
+    { title: "Web Development Basics", preview: "Can you explain the fundamentals of web development?" },
+    { title: "Python Data Analysis", preview: "How can I use Python for data analysis?" },
+    { title: "AI Ethics Discussion", preview: "What are the main ethical concerns in AI development?" },
+    { title: "JavaScript Frameworks", preview: "Can you compare React, Vue, and Angular?" },
+    { title: "Machine Learning Intro", preview: "What's a good starting point for learning about machine learning?" },
+    { title: "Cybersecurity Best Practices", preview: "What are some essential cybersecurity practices for businesses?" },
+    { title: "Cloud Computing Services", preview: "How do AWS, Azure, and Google Cloud compare?" },
+    { title: "Mobile App Development", preview: "What are the pros and cons of native vs. cross-platform development?" },
   ];
 
+  const sidebarVariants = {
+    open: { x: 0 },
+    closed: { x: "-100%" },
+  };
+
+  const toggleButtonVariants = {
+    open: { x: 256 }, // 16rem = 256px
+    closed: { x: 0 },
+  };
+
   return (
-    <div className="fixed top-14 left-0 h-4/5 flex flex-col overflow-auto">
-      <ul className="menu menu-md p-4 shadow-lg overflow-auto">
-        {chatData.map((chat, index) => (
-          <li key={index} className={`mb-2 ${chat.user === "ChatGPT" ? "text-left" : "text-right"}`}>
-            <a className={`block p-3 rounded-lg overflow-hidden text-ellipsis whitespace-nowrap ${chat.user === "ChatGPT" ? "bg-gray-300" : "bg-blue-500 text-white"}`}>
-              {chat.message}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            className="fixed top-14 left-0 h-[calc(100vh-3.5rem)] w-64 bg-gray-50 overflow-auto"
+            variants={sidebarVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            <ul className="p-2 space-y-2">
+              {chatData.map((chat, index) => (
+                <motion.li 
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <a className="block p-3 rounded-lg bg-white hover:bg-gray-100 transition-colors duration-200 shadow-sm">
+                    <h3 className="font-medium text-gray-800 mb-1 truncate">{chat.title}</h3>
+                    <p className="text-sm text-gray-500 truncate">{chat.preview}</p>
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.button
+        className="fixed top-16 left-0 z-10 p-2 bg-gray-800 text-white rounded-r-md shadow-md"
+        onClick={() => setIsOpen(!isOpen)}
+        variants={toggleButtonVariants}
+        animate={isOpen ? "open" : "closed"}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      >
+        {isOpen ? "◀" : "▶"}
+      </motion.button>
+    </>
   );
 }
