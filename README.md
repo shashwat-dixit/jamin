@@ -6,6 +6,6 @@ Jamin is a LLM Aggregator constructed using Node.js and Express for the backend,
 
 - Backend constructed using Node.js and Express.
 - Frontend built with React and Vite.
-- Integration with multiple LLMs: OpenAI, LLaMA, Gemini and Cohere AI models.
-- Allows users to upload their own text files for processing.
-- Facilitates querying the content with the integrated LLMs.
+- Integration with multiple LLMs: OpenAI, Gemini and Claude AI models.
+- Allows users to upload pdfs and answer questions based on the pdf.
+- Facilitates querying youtube with the integrated LLMs.
