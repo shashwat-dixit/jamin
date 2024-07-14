@@ -9,7 +9,7 @@ export default function Navbar() {
   // Simulating authentication check
   useEffect(() => {
     const checkAuth = async () => {
-      const authStatus = await new Promise(resolve => setTimeout(() => resolve(false), 10000));
+      const authStatus = await new Promise(resolve => setTimeout(() => resolve(true), 1000));
       setIsAuthenticated(authStatus);
     };
     checkAuth();
@@ -62,7 +62,6 @@ export default function Navbar() {
                   </svg>
                 </motion.div>
                 <ul tabIndex={0} className="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-                  <li><Link to="/chat/profile">Profile</Link></li>
                   <li><Link to="/chat/settings">Settings</Link></li>
                 </ul>
               </div>
@@ -88,7 +87,6 @@ export default function Navbar() {
         >
           <input type="text" placeholder="Search" className="input input-bordered w-full mb-2" />
           <ul className="menu bg-base-100 w-full rounded-box">
-            <li><Link to="/chat/profile">Profile</Link></li>
             <li><Link to="/chat/settings">Settings</Link></li>
           </ul>
         </motion.div>

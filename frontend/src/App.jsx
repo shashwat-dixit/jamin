@@ -10,28 +10,22 @@ import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
 import ChatWindow from './components/chatComponents/ChatWindow'
-import Profile from './components/userComponents/Profile'
-import Settings from './components/userComponents/Settings'
+import Settings from './components/chatComponents/Settings'
 // import Loader from './pages/Loader'
 
 function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <>
         <Route path='/' element={<RootLayout />}>
           <Route index element={<Home />} />
           <Route path="signup" element={<SignUp />} />
-          {/* protected route */}
           <Route path="/chat" element={<ChatLayout />} >
             <Route index element={<ChatWindow />} />
-            <Route path="profile" element={<Profile />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+          <Route path='*' element={<NotFound />} />
         </Route>
-        {/* <Route path='/loader' element={<Loader />} /> */}
-        <Route path='*' element={<NotFound />} />
-      </>
     )
   )
 
