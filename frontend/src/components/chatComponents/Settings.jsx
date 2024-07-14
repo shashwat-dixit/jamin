@@ -5,21 +5,12 @@ export default function Settings() {
   const [settings, setSettings] = useState({
     appearance: {
       theme: 'dark',
-      fontSize: 'medium',
-      messageSpacing: 'comfortable'
     },
-    privacy: {
-      saveConversations: true,
-      shareDataForImprovement: false
-    },
-    notifications: {
-      email: true,
-      desktop: false,
-      updates: true
-    },
-    language: 'english',
-    aiModel: 'gpt-4',
-    apiKey: '••••••••••••••••'
+    defaultAiModel: 'gpt-4',
+    apiKeys: {
+      'Anthropic': '',
+      'OpenAI': ''
+    }
   });
 
   const handleChange = (section, setting, value) => {
@@ -32,10 +23,13 @@ export default function Settings() {
     }));
   };
 
-  const handleSimpleChange = (setting, value) => {
+  const handleApiKeyChange = (model, value) => {
     setSettings(prev => ({
       ...prev,
-      [setting]: value
+      apiKeys: {
+        ...prev.apiKeys,
+        [model]: value
+      }
     }));
   };
 
@@ -85,13 +79,14 @@ export default function Settings() {
             <div>
               <label className="block text-sm font-medium mb-1">AI Model</label>
               <select 
-                value={settings.aiModel} 
-                onChange={(e) => handleSimpleChange('aiModel', e.target.value)}
+                value={settings.defaultAiModel} 
+                onChange={(e) => handleChange('defaultAiModel', e.target.value)}
                 className="w-full bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="gpt-3.5">GPT-3.5</option>
                 <option value="gpt-4">GPT-4</option>
-                <option value="claude-2">Claude 2</option>
+                <option value="Cohere">Cohere</option>
+                <option value="claude">Claude</option>
               </select>
             </div>
           </div>
@@ -100,15 +95,17 @@ export default function Settings() {
         <motion.section className="mb-12" variants={itemVariants}>
           <h2 className="text-2xl font-semibold mb-4">API Settings</h2>
           <div className="bg-gray-800 rounded-lg p-6 space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">API Key</label>
-              <input 
-                type="password" 
-                placeholder='API Key'
-                onChange={(e) => handleSimpleChange('apiKey', e.target.value)}
-                className="w-full bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+            {Object.keys(settings.apiKeys).map((model) => (
+              <div key={model}>
+                <label className="block text-sm font-medium mb-1">{model} API Key</label>
+                <input 
+                  type="password" 
+                  placeholder={'API Key'}
+                  onChange={(e) => handleApiKeyChange(model, e.target.value)}
+                  className="w-full bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            ))}
           </div>
         </motion.section>
 
