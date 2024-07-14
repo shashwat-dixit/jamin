@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import {Link} from 'react-router-dom'
 
 export default function ChatHistory() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,10 +48,10 @@ export default function ChatHistory() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <a className="block p-3 rounded-lg bg-white hover:bg-gray-100 transition-colors duration-200 shadow-sm">
+                  <Link to='/chat' className="block p-3 rounded-lg bg-white hover:bg-gray-100 transition-colors duration-200 shadow-sm">
                     <h3 className="font-medium text-gray-800 mb-1 truncate">{chat.title}</h3>
                     <p className="text-sm text-gray-500 truncate">{chat.preview}</p>
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
