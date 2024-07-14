@@ -25,7 +25,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between">
         {isAuthenticated ? (
           <>
-            <div className="flex items-center">
+            <div className="flex items-center md:w-1/3">
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -36,9 +36,11 @@ export default function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
               </motion.button>
-              <Link to="/chat" className="btn btn-ghost text-xl ml-2 md:ml-0">Jamin</Link>
             </div>
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="flex-1 flex justify-center">
+              <Link to="/chat" className="btn btn-ghost text-xl">Jamin</Link>
+            </div>
+            <div className="hidden md:flex items-center justify-end space-x-4 md:w-1/3">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

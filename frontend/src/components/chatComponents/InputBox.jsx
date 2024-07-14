@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import SubmitButton from './SubmitButton'
+import { Plus, FileInput, ArrowUp } from 'lucide-react';
+import ChooseModel from './ChooseModel';
+import DataInput from './DataInput';
 
 export default function InputBox() {
   const [inputValue, setInputValue] = useState('');
@@ -8,35 +10,39 @@ export default function InputBox() {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-
-    // Increase rows if input length exceeds a certain threshold
-    const newRows = Math.min(1 + Math.floor(value.length / 50), 5); // max 5 rows
+    const newRows = Math.min(1 + Math.floor(value.length / 50), 5);
     setRows(newRows);
   };
 
   return (
-    <div className="fixed bottom-0 left-0 w-full flex justify-center p-4">
-      <div className="fixed bottom-6 p-4 flex space-x-4 max-w-lg w-full">
-        <div className="w-24 h-24 flex-shrink-0">
+    <div className="fixed bottom-0 left-0 w-full bg-gray-800 border-t border-gray-700 p-2">
+      <div className="max-w-5xl mx-auto flex items-center space-x-2">
+        <div className="w-8 h-8 flex-shrink-0">
           <img
             src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            className="rounded w-full h-full object-cover"
+            className="rounded-full w-full h-full object-cover"
+            alt="Avatar"
           />
         </div>
-        <label className="flex flex-col w-full">
-          <div className="label flex justify-between">
-            <span className="label-text">Ask me anything!</span>
-            <span className="label-text-alt">GPT 3.5</span>
-          </div>
+        <div className="flex-grow relative">
           <textarea
             placeholder="Type here"
-            className="textarea textarea-bordered w-full resize-none"
+            className="textarea textarea-bordered w-full resize-none bg-gray-700 text-white pr-32"
             rows={rows}
             value={inputValue}
             onChange={handleInputChange}
           ></textarea>
-        </label>
-        <SubmitButton />
+          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+            <DataInput />
+            <ChooseModel />
+            <button className="btn btn-circle btn-ghost">
+              <ArrowUp size={20} />
+            </button>
+          </div>
+        </div>
+        <div className="text-xs font-semibold text-gray-400">
+          GPT 3.5
+        </div>
       </div>
     </div>
   );

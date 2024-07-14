@@ -59,9 +59,9 @@ export default function Settings() {
       initial="hidden"
       animate="visible"
     >
-      <div className="max-w-4xl mx-auto">
-        <motion.h1 className="text-4xl font-bold mb-12 text-center" variants={itemVariants}>Settings</motion.h1>
-        
+      <div className="max-w-xl mx-auto">
+        <motion.h1 className="text-4xl font-bold my-12 text-center" variants={itemVariants}>Settings</motion.h1>
+      
         <motion.section className="mb-12" variants={itemVariants}>
           <h2 className="text-2xl font-semibold mb-4">Appearance</h2>
           <div className="bg-gray-800 rounded-lg p-6 space-y-4">
@@ -76,116 +76,12 @@ export default function Settings() {
                 <option value="light">Light</option>
               </select>
             </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Font Size</label>
-              <select 
-                value={settings.appearance.fontSize} 
-                onChange={(e) => handleChange('appearance', 'fontSize', e.target.value)}
-                className="w-full bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Message Spacing</label>
-              <select 
-                value={settings.appearance.messageSpacing} 
-                onChange={(e) => handleChange('appearance', 'messageSpacing', e.target.value)}
-                className="w-full bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="compact">Compact</option>
-                <option value="comfortable">Comfortable</option>
-                <option value="spacious">Spacious</option>
-              </select>
-            </div>
           </div>
         </motion.section>
 
         <motion.section className="mb-12" variants={itemVariants}>
-          <h2 className="text-2xl font-semibold mb-4">Privacy</h2>
+          <h2 className="text-2xl font-semibold mb-4">Default AI Model</h2>
           <div className="bg-gray-800 rounded-lg p-6 space-y-4">
-            <div className="flex items-center justify-between">
-              <span>Save Conversations</span>
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  checked={settings.privacy.saveConversations}
-                  onChange={(e) => handleChange('privacy', 'saveConversations', e.target.checked)}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Share Data for Improvement</span>
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  checked={settings.privacy.shareDataForImprovement}
-                  onChange={(e) => handleChange('privacy', 'shareDataForImprovement', e.target.checked)}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          </div>
-        </motion.section>
-
-        <motion.section className="mb-12" variants={itemVariants}>
-          <h2 className="text-2xl font-semibold mb-4">Notifications</h2>
-          <div className="bg-gray-800 rounded-lg p-6 space-y-4">
-            <div className="flex items-center justify-between">
-              <span>Email Notifications</span>
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  checked={settings.notifications.email}
-                  onChange={(e) => handleChange('notifications', 'email', e.target.checked)}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Desktop Notifications</span>
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  checked={settings.notifications.desktop}
-                  onChange={(e) => handleChange('notifications', 'desktop', e.target.checked)}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Product Updates</span>
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  checked={settings.notifications.updates}
-                  onChange={(e) => handleChange('notifications', 'updates', e.target.checked)}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          </div>
-        </motion.section>
-
-        <motion.section className="mb-12" variants={itemVariants}>
-          <h2 className="text-2xl font-semibold mb-4">Language and AI Model</h2>
-          <div className="bg-gray-800 rounded-lg p-6 space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">Language</label>
-              <select 
-                value={settings.language} 
-                onChange={(e) => handleSimpleChange('language', e.target.value)}
-                className="w-full bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="english">English</option>
-                <option value="spanish">Spanish</option>
-                <option value="french">French</option>
-                <option value="german">German</option>
-              </select>
-            </div>
             <div>
               <label className="block text-sm font-medium mb-1">AI Model</label>
               <select 
@@ -208,7 +104,7 @@ export default function Settings() {
               <label className="block text-sm font-medium mb-1">API Key</label>
               <input 
                 type="password" 
-                value={settings.apiKey}
+                placeholder='API Key'
                 onChange={(e) => handleSimpleChange('apiKey', e.target.value)}
                 className="w-full bg-gray-700 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />

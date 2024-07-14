@@ -9,7 +9,7 @@ import ChatLayout from './layouts/ChatLayout'
 import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
-import ChatWindow from './components/chatComponents/ChatWindow'
+import ChatWindow from './pages/ChatWindow'
 import Settings from './components/chatComponents/Settings'
 // import Loader from './pages/Loader'
 

@@ -22,17 +22,17 @@ const MessageList = () => {
       status: 'Seen'
     },
   ];
+
   const currentUser = 'Anakin Skywalker';
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-900 text-white p-4">
-      <motion.div 
-        className="w-full max-w-2xl bg-gray-800 rounded-lg shadow-lg p-6"
+    <div className="min-w-full flex justify-center items-center min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-gray-200 p-4">
+      <motion.div
+        className="bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-gray-700"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Message List</h2>
         <MessageItem messages={messages} currentUser={currentUser} />
       </motion.div>
     </div>
