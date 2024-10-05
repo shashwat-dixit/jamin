@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaYoutube, FaFileAlt, FaBrain, FaKey } from "react-icons/fa";
+import { FaYoutube, FaFileAlt, FaBrain, FaKey, FaImages } from "react-icons/fa";
 import FeatureCard from '../components/FeatureCard';
 import Login from '../components/Login';
 
@@ -12,7 +12,7 @@ const features = [
   },
   {
     title: "Video Analysis",
-    description: "Unlock video content with intelligent summarization.",
+    description: "Get intelligent summarization of Youtube Video.",
     icon: FaYoutube,
   },
   {
@@ -21,9 +21,19 @@ const features = [
     icon: FaBrain,
   },
   {
-    title: "Premium Integration",
-    description: "Seamlessly connect with advanced AI models.",
+    title: "API Key Integration",
+    description: "Seamlessly connect with models using pre-existing API keys.",
     icon: FaKey,
+  },
+  {
+    title: "Generate Images",
+    description: "Use the all new Flux.1 to generate images on demand",
+    icon: FaImages,
+  },
+  {
+    title: "Research Assistant",
+    description: "Extract key insights form papers and journals.",
+    icon: FaImages,
   },
 ];
 
@@ -55,7 +65,7 @@ const Home = () => {
         animate="visible"
       >
         <motion.h1 className="text-4xl mt-10 lg:text-5xl font-bold mb-6 text-white" variants={itemVariants}>
-          Amplify Your Work with Jamin AI
+          Amplify Your Work with Jamin AI 
         </motion.h1>
         <motion.p className="text-lg lg:text-xl mb-12 text-gray-300" variants={itemVariants}>
           Harness the power of AI to streamline your workflow, analyze documents, and gain insights

@@ -59,7 +59,7 @@ export default function SignUp() {
           <motion.button
             className="w-full px-4 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 transition duration-200"
             type="submit"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
             whileHover={{ scale: 1.01 }}

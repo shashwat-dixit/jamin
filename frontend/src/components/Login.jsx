@@ -49,7 +49,7 @@ export default function Login() {
           <motion.button
             className={buttonClasses}
             type="submit"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
             whileHover={{ scale: 1.02 }}

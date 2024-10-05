@@ -25,5 +25,4 @@ Jamin is a LLM Aggregator constructed using Node.js and Express for the backend,
 - Node JS
 - Express
 - Typescript
-- Supabase
 - Langchain
