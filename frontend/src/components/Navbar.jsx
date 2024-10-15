@@ -38,7 +38,7 @@ export default function Navbar() {
               </motion.button>
             </div>
             <div className="flex-1 flex justify-center">
-              <Link to="/chat" className="btn btn-ghost text-2xl text-white">Jamin</Link>
+              <Link to="/chat" className="btn btn-ghost text-2xl text-white">Jamin AI</Link>
             </div>
             <div className="hidden md:flex items-center justify-end space-x-4 md:w-1/3">
               <motion.div
@@ -75,7 +75,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Link to="/" className="btn btn-ghost text-2xl text-white">Jamin</Link>
+              <Link to="/" className="btn btn-ghost text-2xl text-white">Jamin AI</Link>
             </motion.div>
           </div>
         )}

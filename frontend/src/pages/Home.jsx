@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaYoutube, FaFileAlt, FaBrain, FaKey, FaImages } from "react-icons/fa";
+import { FaYoutube, FaFileAlt, FaBrain, FaKey, FaImages } from "react-icons/fa"
+import { FaMagnifyingGlass } from "react-icons/fa6";
 import FeatureCard from '../components/FeatureCard';
 import Login from '../components/Login';
 
@@ -33,13 +34,13 @@ const features = [
   {
     title: "Research Assistant",
     description: "Extract key insights form papers and journals.",
-    icon: FaImages,
+    icon: FaMagnifyingGlass,
   },
 ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { 
+  visible: {
     opacity: 1,
     transition: { staggerChildren: 0.1 }
   }
@@ -47,8 +48,8 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { y: 20, opacity: 0 },
-  visible: { 
-    y: 0, 
+  visible: {
+    y: 0,
     opacity: 1,
     transition: { type: 'spring', stiffness: 100 }
   }
@@ -58,14 +59,14 @@ const Home = () => {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-br from-gray-900 to-indigo-900 text-white">
       {/* Left half - Feature cards */}
-      <motion.div 
+      <motion.div
         className="w-full lg:w-3/5 p-8 lg:p-16 overflow-y-auto"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.h1 className="text-4xl mt-10 lg:text-5xl font-bold mb-6 text-white" variants={itemVariants}>
-          Amplify Your Work with Jamin AI 
+          Amplify Your Work with Jamin AI
         </motion.h1>
         <motion.p className="text-lg lg:text-xl mb-12 text-gray-300" variants={itemVariants}>
           Harness the power of AI to streamline your workflow, analyze documents, and gain insights
@@ -79,9 +80,9 @@ const Home = () => {
           ))}
         </motion.div>
       </motion.div>
-      
+
       {/* Right half - Login section */}
-      <motion.div 
+      <motion.div
         className="w-full lg:w-2/5 p-8 lg:p-16 flex items-center justify-center"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
