@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FaYoutube, FaFileAlt, FaBrain, FaKey, FaImages } from "react-icons/fa"
 import { FaMagnifyingGlass } from "react-icons/fa6";
@@ -55,12 +54,22 @@ const itemVariants = {
   }
 };
 
+
 const Home = () => {
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-br from-gray-900 to-indigo-900 text-white">
+    <div className="relative flex flex-col lg:flex-row min-h-screen bg-gradient-to-br from-gray-900 to-indigo-900 text-white">
+      {/* Pattern overlay */}
+      <div
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 7V0H9V7H16V9H9V16H7V9H0V7H7Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E")`,
+          backgroundSize: '16px 16px'
+        }}
+      />
+
       {/* Left half - Feature cards */}
       <motion.div
-        className="w-full lg:w-3/5 p-8 lg:p-16 overflow-y-auto"
+        className="relative z-10 w-full lg:w-3/5 p-8 lg:p-16 overflow-y-auto"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -83,7 +92,7 @@ const Home = () => {
 
       {/* Right half - Login section */}
       <motion.div
-        className="w-full lg:w-2/5 p-8 lg:p-16 flex items-center justify-center"
+        className="relative z-10 w-full lg:w-2/5 p-8 lg:p-16 flex items-center justify-center"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 0.5 }}

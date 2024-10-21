@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const FeatureCard = ({ title, description, icon: Icon }) => (
   <motion.div
     whileHover={{ scale: 1.03 }}
-    className="bg-gray-800 bg-opacity-50 rounded-lg shadow-lg p-6 border border-gray-700"
+    className="bg-gray-800 bg-opacity-80 rounded-lg shadow-lg p-6 border border-gray-700"
   >
     <div className="flex items-center mb-4">
       <div className="mr-4 text-indigo-400">
@@ -21,10 +21,10 @@ const FeatureCard = ({ title, description, icon: Icon }) => (
     >
       <a href="#" className="text-indigo-400 text-sm font-medium inline-flex items-center group">
         Learn More
-        <svg 
-          className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" 
-          fill="none" 
-          viewBox="0 0 24 24" 
+        <svg
+          className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+          fill="none"
+          viewBox="0 0 24 24"
           stroke="currentColor"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

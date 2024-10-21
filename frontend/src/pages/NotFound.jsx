@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 
 export default function NotFound() {
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center text-white overflow-hidden">
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-indigo-900'>
+      <div
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 7V0H9V7H16V9H9V16H7V9H0V7H7Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E")`,
+          backgroundSize: '16px 16px'
+        }}
+      />
       <motion.h1
         className="text-8xl sm:text-9xl font-bold mb-4"
         initial={{ y: -50, opacity: 0 }}
