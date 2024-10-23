@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const FeatureCard = ({ title, description, icon: Icon }) => (
   <motion.div
     whileHover={{ scale: 1.03 }}
-    className="bg-gray-800 bg-opacity-80 rounded-lg shadow-lg p-6 border border-gray-700"
+    className="bg-gray-800 bg-opacity-85 rounded-lg shadow-lg p-6 border border-gray-700"
   >
     <div className="flex items-center mb-4">
       <div className="mr-4 text-indigo-400">

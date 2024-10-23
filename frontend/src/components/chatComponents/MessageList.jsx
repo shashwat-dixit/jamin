@@ -25,9 +25,9 @@ const MessageList = () => {
   const currentUser = 'Anakin Skywalker';
 
   return (
-    <div className="mt-20 w-full flex justify-center items-center text-gray-200 p-4">
+    <div className="flex justify-center items-center text-gray-200 p-4">
       <motion.div
-        className="w-full max-w-4xl h-[calc(100vh-2rem)] bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-gray-700 overflow-y-auto"
+        className="w-full max-w-4xl h-[calc(100vh-2rem)] px-6 py-10 md:border-x border-gray-700 overflow-y-auto"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
