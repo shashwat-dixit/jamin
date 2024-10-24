@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
@@ -11,7 +11,7 @@ export default function Navbar() {
   // Simulating authentication check
   useEffect(() => {
     const checkAuth = async () => {
-      const authStatus = await new Promise(resolve => setTimeout(() => resolve(true), 1000));
+      const authStatus = await new Promise(resolve => setTimeout(() => resolve(false), 1000));
       setIsAuthenticated(authStatus);
     };
     checkAuth();

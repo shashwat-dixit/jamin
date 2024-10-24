@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react"
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
@@ -9,6 +10,7 @@ export default function RootLayout() {
       </header>
       <main>
         <Outlet />
+        <Analytics />
       </main>
     </div>
   )

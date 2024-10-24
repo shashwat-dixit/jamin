@@ -67,8 +67,11 @@ export const threadsRelations = relations(threads, ({ one, many }) => ({
   parentThread: one(threads, {
     fields: [threads.parentThreadId],
     references: [threads.id],
+    relationName: "parentChildThread",
   }),
-  childThreads: many(threads),
+  childThreads: many(threads, {
+    relationName: "parentChildThread",
+  }),
   conversation: one(conversations, {
     fields: [threads.conversationId],
     references: [conversations.id],

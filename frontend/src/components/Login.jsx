@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
@@ -29,8 +28,8 @@ export default function Login() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <input 
-              type="email" 
+            <input
+              type="email"
               placeholder="Email address"
               className={inputClasses}
             />
@@ -40,8 +39,8 @@ export default function Login() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <input 
-              type="password" 
+            <input
+              type="password"
               placeholder="Password"
               className={inputClasses}
             />
@@ -58,13 +57,13 @@ export default function Login() {
             Sign In
           </motion.button>
         </Form>
-        
+
         <div className="mt-6 flex items-center justify-between">
           <span className="border-b w-1/5 md:w-1/4"></span>
           <Link to="/forgot-password" className="text-sm text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">Forgot password?</Link>
           <span className="border-b w-1/5 md:w-1/4"></span>
         </div>
-        
+
         <div className="flex flex-col mt-6 space-y-4">
           <motion.button
             className="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-gray-300 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 dark:border-gray-700 dark:hover:bg-gray-800"

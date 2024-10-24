@@ -3,6 +3,7 @@ import { FaYoutube, FaFileAlt, FaBrain, FaKey, FaImages } from "react-icons/fa"
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import FeatureCard from '../components/FeatureCard';
 import Login from '../components/Login';
+import About from '../components/About';
 
 const features = [
   {
