@@ -11,6 +11,8 @@ import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
 import ChatWindow from './pages/ChatWindow'
 import Settings from './components/chatComponents/Settings'
+import FeatureCard from './components/FeatureCard'
+import FeaturePage from './pages/FeaturePage'
 // import Loader from './pages/Loader'
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
     createRoutesFromElements(
       <Route path='/' element={<RootLayout />}>
         <Route index element={<Home />} />
+        <Route path='feature' element={<FeaturePage />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="/chat" element={<ChatLayout />} >
           <Route index element={<ChatWindow />} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const FeatureCard = ({ title, description, icon: Icon }) => (
   <motion.div
@@ -11,7 +12,7 @@ const FeatureCard = ({ title, description, icon: Icon }) => (
       <div className="mr-4 text-indigo-400">
         <Icon size={24} />
       </div>
-      <h3 className="text-lg font-semibold text-indigo-300">{title}</h3>
+      <h2 className="text-lg font-semibold text-indigo-300">{title}</h2>
     </div>
     <p className="text-gray-400 text-sm leading-relaxed mb-4">{description}</p>
     <motion.div
@@ -19,7 +20,7 @@ const FeatureCard = ({ title, description, icon: Icon }) => (
       whileHover={{ x: 5 }}
       transition={{ duration: 0.2 }}
     >
-      <a href="#" className="text-indigo-400 text-sm font-medium inline-flex items-center group">
+      <Link to="/feature" className="text-indigo-400 text-sm font-medium inline-flex items-center group">
         Learn More
         <svg
           className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
@@ -29,7 +30,7 @@ const FeatureCard = ({ title, description, icon: Icon }) => (
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
-      </a>
+      </Link>
     </motion.div>
   </motion.div>
 );
