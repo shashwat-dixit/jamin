@@ -1,10 +1,11 @@
-// src/routes/auth.ts
 import express from "express";
 import passport from "passport";
 import bcrypt from "bcrypt";
 import { db } from "../db/index";
 import { users, userSessions } from "../db/schema";
 import jwt from "jsonwebtoken";
+import { eq } from "drizzle-orm";
+import { User } from "../types/user";
 
 const router = express.Router();
 
@@ -54,13 +55,16 @@ router.post("/register", async (req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
-  passport.authenticate("local", async (err, user, info) => {
-    if (err) return next(err);
-    if (!user) return res.status(401).json(info);
+  passport.authenticate(
+    "local",
+    async (err: Error | null, user: User | null, info: any) => {
+      if (err) return next(err);
+      if (!user) return res.status(401).json(info);
 
-    const tokens = await generateTokens(user.id);
-    res.json({ user, ...tokens });
-  })(req, res, next);
+      const tokens = await generateTokens(user.id);
+      res.json({ user, ...tokens });
+    }
+  )(req, res, next);
 });
 
 // Google auth routes
@@ -75,7 +79,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { session: false }),
   async (req, res) => {
-    const tokens = await generateTokens(req.user!.id);
+    const tokens = await generateTokens((req.user as User)!.id);
     res.redirect(`/auth-success?tokens=${JSON.stringify(tokens)}`);
   }
 );
@@ -92,7 +96,7 @@ router.get(
   "/github/callback",
   passport.authenticate("github", { session: false }),
   async (req, res) => {
-    const tokens = await generateTokens(req.user!.id);
+    const tokens = await generateTokens((req.user as User)!.id);
     res.redirect(`/auth-success?tokens=${JSON.stringify(tokens)}`);
   }
 );

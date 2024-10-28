@@ -1,12 +1,12 @@
 # Jamin AI | Ask Me Anything
 
-Jamin AI is a LLM Aggregator constructed using Node.js and Express for the backend, and React (with Vite) for the frontend. This project integrates multiple Large Language Models (LLMs) including GPT, Cohere AI and Claude to facilitate users in processing and querying their own text files, youtube videos or question answering.
+Jamin AI is a LLM Aggregator constructed using Node.js and Express for the backend, and React (with Vite) for the frontend. This project integrates multiple Large Language Models (LLMs) to facilitate users in processing and querying their own text files, youtube videos or question answering.
 
 ![alt text](img/jaminFrontPage.png)
 
 ## Features
 
-- Integration with multiple LLMs: OpenAI, Cohere and Claude AI models.
+- Integration with multiple LLMs: OpenAI, Cohere and Anthropic AI models.
 - PDF Intelligence: Extract insights from PDFs with AI-powered Q&A.
 - Video Analysis: Get intelligent summarization of Youtube Video.
 - Research Assistant: Extract key insights form papers and journals.
