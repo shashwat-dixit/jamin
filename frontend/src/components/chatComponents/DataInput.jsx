@@ -20,9 +20,9 @@ export default function DataInput() {
 
   return (
     <div className="dropdown dropdown-top" ref={dropdownRef}>
-      <div 
-        tabIndex={0} 
-        role="button" 
+      <div
+        tabIndex={0}
+        role="button"
         className="btn btn-ghost btn-circle"
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -31,7 +31,8 @@ export default function DataInput() {
       {isOpen && (
         <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
           <li><a>Input Video URL</a></li>
-          <li><a>Upload PDF File</a></li>
+          <li><a>Upload PDF</a></li>
+          <li><a>Upload Research Paper</a></li>
         </ul>
       )}
     </div>

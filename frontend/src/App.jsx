@@ -10,8 +10,7 @@ import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
 import ChatWindow from './pages/ChatWindow'
-import Settings from './components/chatComponents/Settings'
-import FeatureCard from './components/FeatureCard'
+import Settings from './pages/Settings'
 import FeaturePage from './pages/FeaturePage'
 // import Loader from './pages/Loader'
 
@@ -32,7 +31,10 @@ function App() {
     )
   )
 
-  return <RouterProvider router={router} />
+  return (
+
+    <RouterProvider router={router} />
+  )
 }
 
 export default App

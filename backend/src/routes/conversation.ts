@@ -1,9 +1,10 @@
 import express from "express";
-import { authenticateToken } from "../middleware/auth";
 
-const converstion = express.Router();
+const conversation = express.Router();
 
-converstion.get("/conversation", authenticateToken, (req, res) => {});
-converstion.post("/conversation", authenticateToken, (req, res) => {});
-converstion.patch("/conversation", authenticateToken, (req, res) => {});
-converstion.delete("/conversation", authenticateToken, (req, res) => {});
+conversation.get("/conversation", (req, res) => {});
+conversation.post("/conversation", (req, res) => {});
+conversation.patch("/conversation", (req, res) => {});
+conversation.delete("/conversation", (req, res) => {});
+
+export default conversation;

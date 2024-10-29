@@ -1,4 +1,4 @@
-# This is just the starter file. Actual code needs to be added.
+# Dockerfile for local development and testing.
 
 # Build stage
 FROM node:14 AS build

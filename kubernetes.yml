@@ -1,5 +1,4 @@
 # Starter file. Actual code still needs to be added.
-
 ---
 apiVersion: v1
 kind: Secret
@@ -26,23 +25,23 @@ spec:
         app: backend
     spec:
       containers:
-      - name: backend
-        image: yourusername/backend:latest
-        ports:
-        - containerPort: 3000
-        env:
-        - name: DATABASE_URL
-          value: postgresql://postgres@db:5432/myapp
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: db-password
-        - name: API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: api-key
+        - name: backend
+          image: yourusername/backend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DATABASE_URL
+              value: postgresql://postgres@db:5432/myapp
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: db-password
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: api-key
 
 ---
 apiVersion: apps/v1
@@ -60,10 +59,10 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: frontend
-        image: yourusername/frontend:latest
-        ports:
-        - containerPort: 80
+        - name: frontend
+          image: yourusername/frontend:latest
+          ports:
+            - containerPort: 80
 
 ---
 apiVersion: apps/v1
@@ -81,25 +80,25 @@ spec:
         app: db
     spec:
       containers:
-      - name: db
-        image: postgres:13
-        ports:
-        - containerPort: 5432
-        env:
-        - name: POSTGRES_DB
-          value: myapp
-        - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: db-password
-        volumeMounts:
-        - name: postgres-storage
-          mountPath: /var/lib/postgresql/data
+        - name: db
+          image: postgres:13
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: myapp
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: db-password
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
       volumes:
-      - name: postgres-storage
-        persistentVolumeClaim:
-          claimName: postgres-pvc
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc
 
 ---
 apiVersion: v1
@@ -159,24 +158,24 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   tls:
-  - hosts:
-    - yourdomain.com
-    secretName: tls-secret
+    - hosts:
+        - yourdomain.com
+      secretName: tls-secret
   rules:
-  - host: yourdomain.com
-    http:
-      paths:
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: backend
-            port: 
-              number: 3000
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: frontend
-            port: 
-              number: 80
+    - host: yourdomain.com
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: backend
+                port:
+                  number: 3000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80

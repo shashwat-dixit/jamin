@@ -12,7 +12,7 @@ export default function FeaturePage() {
                 }}
             />
             <motion.h1
-                className="sm:text-7xl font-bold mb-4"
+                className="text-5xl md:text-7xl font-extrabold mb-4"
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}

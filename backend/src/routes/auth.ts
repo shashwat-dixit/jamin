@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 import { eq } from "drizzle-orm";
 import { User } from "../types/user";
 
-const router = express.Router();
+const auth = express.Router();
 
 // Helper function to generate tokens
 async function generateTokens(userId: string) {
@@ -33,7 +33,7 @@ async function generateTokens(userId: string) {
 }
 
 // Local auth routes
-router.post("/register", async (req, res, next) => {
+auth.post("/register", async (req, res, next) => {
   try {
     const { email, password, username } = req.body;
     const passwordHash = await bcrypt.hash(password, 10);
@@ -54,7 +54,7 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
-router.post("/login", (req, res, next) => {
+auth.post("/login", (req, res, next) => {
   passport.authenticate(
     "local",
     async (err: Error | null, user: User | null, info: any) => {
@@ -68,14 +68,14 @@ router.post("/login", (req, res, next) => {
 });
 
 // Google auth routes
-router.get(
+auth.get(
   "/google",
   passport.authenticate("google", {
     scope: ["profile", "email"],
   })
 );
 
-router.get(
+auth.get(
   "/google/callback",
   passport.authenticate("google", { session: false }),
   async (req, res) => {
@@ -85,14 +85,14 @@ router.get(
 );
 
 // GitHub auth routes
-router.get(
+auth.get(
   "/github",
   passport.authenticate("github", {
     scope: ["user:email"],
   })
 );
 
-router.get(
+auth.get(
   "/github/callback",
   passport.authenticate("github", { session: false }),
   async (req, res) => {
@@ -102,7 +102,7 @@ router.get(
 );
 
 // Refresh token route
-router.post("/refresh-token", async (req, res) => {
+auth.post("/refresh-token", async (req, res) => {
   const { refreshToken } = req.body;
 
   try {
@@ -123,4 +123,4 @@ router.post("/refresh-token", async (req, res) => {
   }
 });
 
-export default router;
+export default auth;

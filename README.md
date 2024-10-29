@@ -15,7 +15,7 @@ Jamin AI is a LLM Aggregator constructed using Node.js and Express for the backe
 
 ## Tech Stack
 
-### Frontend
+### [Frontend](/frontend/README.md)
 
 - React
 - Vite
@@ -25,7 +25,7 @@ Jamin AI is a LLM Aggregator constructed using Node.js and Express for the backe
 - Tanstack react-query
 - React-Router
 
-### Backend
+### [Backend](/backend/README.md)
 
 - Node JS
 - Express
