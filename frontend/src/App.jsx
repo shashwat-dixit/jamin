@@ -1,6 +1,12 @@
 //imports
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from '@vercel/speed-insights/react';
 // Layouts
 import RootLayout from './layouts/RootLayout'
 import ChatLayout from './layouts/ChatLayout'
@@ -12,7 +18,9 @@ import NotFound from './pages/NotFound'
 import ChatWindow from './pages/ChatWindow'
 import Settings from './pages/Settings'
 import FeaturePage from './pages/FeaturePage'
-// import Loader from './pages/Loader'
+
+// create react-query client
+const queryClient = new QueryClient()
 
 function App() {
 
@@ -32,8 +40,12 @@ function App() {
   )
 
   return (
-
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Analytics />
+      <SpeedInsights />
+    </QueryClientProvider>
   )
 }
 
