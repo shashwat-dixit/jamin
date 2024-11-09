@@ -107,7 +107,11 @@ passport.use(
       accessToken: string,
       refreshToken: string,
       profile: GitHubProfile,
-      done
+      done: (
+        error: any,
+        user?: User | false,
+        options?: { message: string }
+      ) => void
     ) => {
       try {
         let user = await db
