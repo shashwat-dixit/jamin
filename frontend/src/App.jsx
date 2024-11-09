@@ -7,6 +7,7 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from '@vercel/speed-insights/react';
+
 // Layouts
 import RootLayout from './layouts/RootLayout'
 import ChatLayout from './layouts/ChatLayout'
@@ -23,7 +24,6 @@ import FeaturePage from './pages/FeaturePage'
 const queryClient = new QueryClient()
 
 function App() {
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RootLayout />}>

@@ -22,7 +22,9 @@ export const users = pgTable("users", {
 
 export const userSessions = pgTable("user_sessions", {
   id: uuid("id").defaultRandom().primaryKey(),
-  userId: uuid("user_id").references(() => users.id),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id),
   accessToken: text("access_token").notNull().unique(),
   refreshToken: text("refresh_token").unique(),
   accessTokenExpiresAt: timestamp("access_token_expires_at").notNull(),

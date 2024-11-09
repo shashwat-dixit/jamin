@@ -2,6 +2,8 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as GitHubStrategy } from "passport-github2";
+import { Profile as GoogleProfile } from "passport-google-oauth20";
+import { Profile as GitHubProfile } from "passport-github2";
 import bcrypt from "bcrypt";
 import { db } from "../db/index";
 import { users } from "../db/schema";
@@ -63,7 +65,7 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       callbackURL: "/auth/google/callback",
     },
-    async (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile: GoogleProfile, done) => {
       try {
         let user = await db
           .select()
@@ -101,7 +103,12 @@ passport.use(
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
       callbackURL: "/auth/github/callback",
     },
-    async (accessToken: string, refreshToken: string, profile, done) => {
+    async (
+      accessToken: string,
+      refreshToken: string,
+      profile: GitHubProfile,
+      done
+    ) => {
       try {
         let user = await db
           .select()
