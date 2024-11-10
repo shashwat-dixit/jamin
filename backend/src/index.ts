@@ -6,6 +6,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import "./config/passport";
 
+import upload from "./utils/uploadPdf";
+
 // routes
 import auth from "./routes/auth";
 // import conversation from "./routes/conversation";
@@ -68,6 +70,41 @@ app.use(
     res.status(500).json({ message: "Something went wrong!" });
   }
 );
+// Single file upload
+app.post("/upload-pdf", upload.single("pdf"), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    // The file has been uploaded successfully
+    return res.status(200).json({
+      message: "File uploaded successfully",
+      fileLocation: (req.file as any).location, // S3 URL of the uploaded file
+    });
+  } catch (error) {
+    console.error("Upload error:", error);
+    return res.status(500).json({ error: "Error uploading file" });
+  }
+});
+
+// Multiple files upload (if needed)
+app.post("/upload-multiple-pdfs", upload.array("pdfs", 5), (req, res) => {
+  try {
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ error: "No files uploaded" });
+    }
+
+    // Files have been uploaded successfully
+    return res.status(200).json({
+      message: "Files uploaded successfully",
+      fileLocations: (req.files as any[]).map((file) => file.location), // Array of S3 URLs
+    });
+  } catch (error) {
+    console.error("Upload error:", error);
+    return res.status(500).json({ error: "Error uploading files" });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
