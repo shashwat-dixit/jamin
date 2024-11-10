@@ -7,6 +7,7 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Toaster } from 'react-hot-toast';
 
 // Layouts
 import RootLayout from './layouts/RootLayout'
@@ -42,6 +43,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+      <Toaster position="bottom-right" />
       <ReactQueryDevtools initialIsOpen={false} />
       <Analytics />
       <SpeedInsights />
