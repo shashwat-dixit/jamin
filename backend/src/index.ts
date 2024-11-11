@@ -4,6 +4,7 @@ import session from "express-session";
 import passport from "passport";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import chat from "./routes/chat";
 import "./config/passport";
 
 import upload from "./utils/uploadPdf";
@@ -51,8 +52,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use("/api", chat);
 app.use("/auth", auth);
-
 // Health check route
 app.get("/health", (req, res) => {
   res.json({ status: "OK" });
