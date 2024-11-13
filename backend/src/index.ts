@@ -4,16 +4,15 @@ import session from "express-session";
 import passport from "passport";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import chat from "./routes/chat";
+
 import "./config/passport";
 
+// util functions
 import upload from "./utils/uploadPdf";
 
 // routes
 import auth from "./routes/auth";
-// import conversation from "./routes/conversation";
-// import upload from "./routes/upload";
-// import action from "./routes/actions";
+import chat from "./routes/chat";
 
 const app = express();
 
@@ -54,6 +53,7 @@ app.use(passport.session());
 // Routes
 app.use("/api", chat);
 app.use("/auth", auth);
+
 // Health check route
 app.get("/health", (req, res) => {
   res.json({ status: "OK" });
@@ -108,14 +108,5 @@ app.post("/upload-multiple-pdfs", upload.array("pdfs", 5), (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`⚡Server running on port ${PORT}`);
 });
-
-// app.use("/auth", auth);
-// app.use("/api/user/:id", authenticateToken, conversation);
-// app.use("/api/user/:id", authenticateToken, upload);
-// app.use("/api/user/:id", authenticateToken, action);
-
-// app.get("/", (req, res) => {
-//   res.send("hello, world!");
-// });

@@ -89,22 +89,12 @@ export const messages = pgTable("messages", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// merge research paper with this.
 export const pdfs = pgTable("pdfs", {
   id: uuid("id").defaultRandom().primaryKey(),
   userId: uuid("user_id").references(() => users.id),
   filename: text("filename").notNull(),
   content: text("content").notNull(),
-  analysis: text("analysis"),
-  aiModelId: uuid("ai_model_id").references(() => aiModels.id),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
-
-export const videos = pgTable("videos", {
-  id: uuid("id").defaultRandom().primaryKey(),
-  userId: uuid("user_id").references(() => users.id),
-  url: text("url").notNull(),
-  title: text("title"),
   analysis: text("analysis"),
   aiModelId: uuid("ai_model_id").references(() => aiModels.id),
   createdAt: timestamp("created_at").defaultNow(),
@@ -134,11 +124,17 @@ export const researchPapers = pgTable("research_papers", {
 
 export const documents = pgTable("documents", {
   id: uuid("id").defaultRandom().primaryKey(),
-  content: text("content").notNull(),
-  embedding: jsonb("embedding"),
-  metadata: jsonb("metadata"),
+  userId: uuid("user_id").references(() => users.id),
+  type: text("type").notNull(), // e.g., "pdf", "research_paper", "video"
+  title: text("title"), // Title for the document or video
+  content: text("content"), // Main content for text-based docs; nullable for videos
+  url: text("url"), // URL for videos; nullable for non-video types
+  analysis: text("analysis"), // AI-generated analysis or summary (optional)
+  embedding: jsonb("embedding"), // Vector embedding for RAG
+  metadata: jsonb("metadata"), // Additional metadata (e.g., page numbers, authors)
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
+  aiModelId: uuid("ai_model_id").references(() => aiModels.id),
 });
 
 export const documentChunks = pgTable("document_chunks", {
@@ -174,9 +170,6 @@ export type NewMessage = InferInsertModel<typeof messages>;
 
 export type Pdf = InferSelectModel<typeof pdfs>;
 export type NewPdf = InferInsertModel<typeof pdfs>;
-
-export type Video = InferSelectModel<typeof videos>;
-export type NewVideo = InferInsertModel<typeof videos>;
 
 export type Image = InferSelectModel<typeof images>;
 export type NewImage = InferInsertModel<typeof images>;

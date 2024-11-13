@@ -151,31 +151,61 @@ async function seed() {
     ]);
     console.log("✅ Messages created successfully");
 
-    // Create PDFs
-    console.log("📄 Creating PDFs...");
-    await db.insert(schema.pdfs).values([
-      {
-        userId: user1.id,
-        filename: "research.pdf",
-        content: "PDF content here...",
-        analysis: "This paper discusses advanced AI techniques...",
-        aiModelId: gpt4.id,
-      },
-    ]);
-    console.log("✅ PDFs created successfully");
+    // Create documents (generalized for PDFs, videos, research papers)
+    console.log("📄 Creating documents...");
+    const [pdfDoc, videoDoc, researchDoc] = await db
+      .insert(schema.documents)
+      .values([
+        {
+          userId: user1.id,
+          type: "pdf",
+          title: "Research Paper on AI",
+          content: "PDF content here...",
+          analysis: "This paper discusses advanced AI techniques...",
+          aiModelId: gpt4.id,
+          metadata: { filename: "research.pdf" },
+        },
+        {
+          userId: user1.id,
+          type: "video",
+          title: "AI Tutorial",
+          url: "https://example.com/video1",
+          analysis: "This video explains machine learning concepts...",
+          aiModelId: gpt4.id,
+          metadata: { duration: "15:30" },
+        },
+        {
+          userId: user1.id,
+          type: "research_paper",
+          title: "Advances in Neural Networks",
+          authors: "John Doe, Jane Smith",
+          content: "Research paper content here...",
+          analysis:
+            "This paper presents novel approaches to neural network architecture...",
+          aiModelId: gpt4.id,
+          metadata: { authors: ["John Doe", "Jane Smith"] },
+        },
+      ])
+      .returning();
+    console.log("✅ Documents created successfully");
 
-    // Create videos
-    console.log("🎥 Creating videos...");
-    await db.insert(schema.videos).values([
+    // Create document chunks for one of the documents
+    console.log("📑 Creating document chunks...");
+    await db.insert(schema.documentChunks).values([
       {
-        userId: user1.id,
-        url: "https://example.com/video1",
-        title: "AI Tutorial",
-        analysis: "This video explains machine learning concepts...",
-        aiModelId: gpt4.id,
+        documentId: pdfDoc.id,
+        content: "Chunk 1 content...",
+        embedding: { vector: [0.2, 0.3, 0.4] },
+        metadata: { chunk_number: 1 },
+      },
+      {
+        documentId: pdfDoc.id,
+        content: "Chunk 2 content...",
+        embedding: { vector: [0.3, 0.4, 0.5] },
+        metadata: { chunk_number: 2 },
       },
     ]);
-    console.log("✅ Videos created successfully");
+    console.log("✅ Document chunks created successfully");
 
     // Create images
     console.log("🖼️ Creating images...");
@@ -193,55 +223,10 @@ async function seed() {
     ]);
     console.log("✅ Images created successfully");
 
-    // Create research papers
-    console.log("📚 Creating research papers...");
-    await db.insert(schema.researchPapers).values([
-      {
-        userId: user1.id,
-        title: "Advances in Neural Networks",
-        authors: "John Doe, Jane Smith",
-        content: "Research paper content here...",
-        analysis:
-          "This paper presents novel approaches to neural network architecture...",
-        aiModelId: gpt4.id,
-      },
-    ]);
-    console.log("✅ Research papers created successfully");
-
-    // Create documents and chunks
-    console.log("📑 Creating documents and chunks...");
-    const [doc1] = await db
-      .insert(schema.documents)
-      .values([
-        {
-          content: "Long document content here...",
-          embedding: { vector: [0.1, 0.2, 0.3] },
-          metadata: { source: "research paper", category: "AI" },
-        },
-      ])
-      .returning();
-
-    await db.insert(schema.documentChunks).values([
-      {
-        documentId: doc1.id,
-        content: "Chunk 1 content...",
-        embedding: { vector: [0.2, 0.3, 0.4] },
-        metadata: { chunk_number: 1 },
-      },
-      {
-        documentId: doc1.id,
-        content: "Chunk 2 content...",
-        embedding: { vector: [0.3, 0.4, 0.5] },
-        metadata: { chunk_number: 2 },
-      },
-    ]);
-    console.log("✅ Documents and chunks created successfully");
-
     console.log("✨ All seed data inserted successfully!");
     return true;
   } catch (error) {
     console.error("❌ Error in seed operation:", error);
-    // Log specific error details
     if (error instanceof Error) {
       console.error("Error name:", error.name);
       console.error("Error message:", error.message);
