@@ -24,6 +24,7 @@ import FeaturePage from './pages/FeaturePage'
 // create react-query client
 const queryClient = new QueryClient()
 
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(

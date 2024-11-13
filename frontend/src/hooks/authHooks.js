@@ -34,7 +34,7 @@ export const useSignup = () => {
 
   return useMutation({
     mutationFn: async (userData) => {
-      const { data } = await axiosInstance.post("/auth/signup", userData);
+      const { data } = await axiosInstance.post("/auth/register", userData);
       return data;
     },
     onSuccess: (data) => {

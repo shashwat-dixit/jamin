@@ -20,8 +20,6 @@ export default function Login() {
       email: formData.get('email'),
       password: formData.get('password'),
     };
-    // console.log('Sending credentials:', credentials); 
-    // Debug log
     try {
       await login.mutateAsync(credentials);
       toast.success('Successfully logged in!');

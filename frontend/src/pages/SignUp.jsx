@@ -1,8 +1,30 @@
+import { useSignup, useGithubLogin, useGoogleLogin } from "../hooks/authHooks"
 import { Form, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
+import toast from "react-hot-toast";
 
 export default function SignUp() {
+  const signup = useSignup();
+  const githubLogin = useGithubLogin();
+  const googleLogin = useGoogleLogin();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const credentials = {
+      email: formData.get('email'),
+      username: formData.get('username'),
+      password: formData.get('password'),
+    };
+
+    try {
+      await signup.mutateAsync(credentials);
+      toast.success("Signed up successfully!")
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Failed to signup!')
+    }
+  }
   return (
     <div className='flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-indigo-900'>
       <div
@@ -26,7 +48,7 @@ export default function SignUp() {
         >
           Create Account
         </motion.h2>
-        <Form method='post' className='flex flex-col space-y-4'>
+        <Form method='post' onSubmit={handleSubmit} className='flex flex-col space-y-4'>
           <motion.div
             className="relative"
             initial={{ opacity: 0, x: -20 }}
@@ -35,8 +57,10 @@ export default function SignUp() {
           >
             <input
               type="email"
+              name="email"
               placeholder="Email Address"
               className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition duration-200 dark:bg-gray-700 dark:border-gray-600 dark:focus:border-indigo-400"
+              disabled={signup.isPending}
             />
           </motion.div>
           <motion.div
@@ -47,8 +71,10 @@ export default function SignUp() {
           >
             <input
               type="text"
-              placeholder="Name"
+              placeholder="Username"
+              name="username"
               className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition duration-200 dark:bg-gray-700 dark:border-gray-600 dark:focus:border-indigo-400"
+              disabled={signup.isPending}
             />
           </motion.div>
           <motion.div
@@ -60,7 +86,9 @@ export default function SignUp() {
             <input
               type="password"
               placeholder="Password"
+              name="password"
               className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition duration-200 dark:bg-gray-700 dark:border-gray-600 dark:focus:border-indigo-400"
+              disabled={signup.isPending}
             />
           </motion.div>
           <motion.button
@@ -71,8 +99,9 @@ export default function SignUp() {
             transition={{ delay: 0.5, duration: 0.5 }}
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.99 }}
+            disabled={signup.isPending}
           >
-            Sign Up
+            {signup.isPending ? "Creating Account ..." : "Sign Up"}
           </motion.button>
         </Form>
 
@@ -90,6 +119,8 @@ export default function SignUp() {
             transition={{ delay: 0.5, duration: 0.5 }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => githubLogin.mutate()}
+            disabled={githubLogin.isPending}
           >
             <FaGithub className="w-5 h-5" />
             <span className="text-sm font-medium">Continue with GitHub</span>
@@ -101,6 +132,8 @@ export default function SignUp() {
             transition={{ delay: 0.6, duration: 0.5 }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => googleLogin.mutate()}
+            disabled={googleLogin.isPending}
           >
             <FaGoogle className="w-5 h-5" />
             <span className="text-sm font-medium">Continue with Google</span>
