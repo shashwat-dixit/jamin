@@ -3,8 +3,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-// const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000/";
-const API_URL = "http://localhost:3000";
+const API_URL = process.env.NODE_API_URL || "http://localhost:3000/";
+// const API_URL = "http://localhost:3000";
 
 // Axios instance with credentials
 const axiosInstance = axios.create({
