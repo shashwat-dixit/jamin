@@ -37,7 +37,8 @@
     "@aws-sdk/client-s3": "^3.688.0",
     "@langchain/anthropic": "^0.3.6",
     "@langchain/cohere": "^0.3.1",
-    "@langchain/core": "^0.3.15",
+    "@langchain/community": "^0.3.16",
+    "@langchain/core": "^0.3.19",
     "@langchain/openai": "^0.3.11",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
@@ -53,6 +54,8 @@
     "passport-github2": "^0.1.12",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "youtube-transcript": "^1.2.1",
+    "youtubei.js": "^9.4.0"
   }
 }
