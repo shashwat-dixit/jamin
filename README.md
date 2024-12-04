@@ -149,4 +149,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Contact
 
-Project Link: [https://github.com/yourusername/jamin](https://github.com/yourusername/jamin)
+Email: [shashwatmain@gmail.com](mailto:shashwatmain@gmail.com)
