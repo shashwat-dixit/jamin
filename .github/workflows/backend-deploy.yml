@@ -1,5 +1,4 @@
-# Deploy script for Cloudflare (Starter, still need to add stuff!)
-name: Deploy to Cloudflare Pages
+name: Deploy to AWS
 
 on:
   push:
