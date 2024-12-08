@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { eq } from "drizzle-orm";
 import jwt from "jsonwebtoken";
 import { db } from "../db/index";
-import { userSessions } from "../db/schema";
+import { User, userSessions } from "../db/schema";
 
 export const authenticateToken = async (
   req: Request,
@@ -28,9 +28,9 @@ export const authenticateToken = async (
     }
 
     const payload = jwt.verify(token, process.env.JWT_SECRET!) as {
-      userId: string;
+      username: string;
     };
-    req.user = { id: payload.userId };
+    (req.user as any) = { id: payload.username };
     next();
   } catch (error) {
     return res.status(403).json({ message: "Invalid token" });

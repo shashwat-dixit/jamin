@@ -45,13 +45,10 @@ app.use(
   })
 );
 
+
 // Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Routes
-app.use("/api", chat);
-app.use("/auth", auth);
 
 // Health check route
 app.get("/health", (req, res) => {
@@ -71,8 +68,11 @@ app.use(
   }
 );
 
-
-app.use("/api", authenticateToken,  uploadRoute);
+// Routes
+app.use("/auth", auth);
+app.use("/api", authenticateToken, chat);
+app.use("/api", authenticateToken, uploadRoute);
+app.use("/api", authenticateToken, );
 
 app.listen(PORT, () => {
   console.log(`⚡Server running on port ${PORT}`);
