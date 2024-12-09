@@ -1,7 +1,4 @@
-# This is just the starter file. Actual code needs to be added.
-
-# Use an official Node runtime as the parent image
-FROM node:14
+FROM node:20-bullseye-slim
 
 # Set the working directory in the container
 WORKDIR /usr/src/app

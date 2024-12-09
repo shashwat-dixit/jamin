@@ -1,11 +1,17 @@
 import { YoutubeLoader } from "@langchain/community/document_loaders/web/youtube";
+import { db } from "../../db";
+import {Document} from "../../db/schema"
 
-const loader = YoutubeLoader.createFromUrl("https://youtu.be/bZQun8Y4L2A", {
+const loader = YoutubeLoader.createFromUrl("", {
   language: "en",
   addVideoInfo: true,
 });
 
-const docs = await loader.load();
+async YTLoader({
+  url
+} : {
+  
+}
+)
 
-console.log(docs);
-
+// const docs = await loader.load();

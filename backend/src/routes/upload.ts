@@ -1,5 +1,4 @@
 import express from "express";
-import { authenticateToken } from "../middleware/auth";
 import upload from "../utils/uploadPdf";
 
 const uploadRoute = express.Router();
@@ -27,7 +26,6 @@ uploadRoute.post("/upload-multiple-pdfs", upload.array("pdfs", 5), (req, res) =>
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ error: "No files uploaded" });
     }
-
     // Files have been uploaded successfully
     return res.status(200).json({
       message: "Files uploaded successfully",

@@ -14,6 +14,6 @@ const loader = new S3Loader({
   unstructuredAPIKey: "", // this will be soon required
 });
 
-const docs = await loader.load();
+// const docs = await loader.load();
 
-console.log(docs);
+// console.log(docs);
