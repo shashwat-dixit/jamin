@@ -55,6 +55,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "pg": "^8.13.1",
+    "resend": "^4.0.1",
     "youtube-transcript": "^1.2.1",
     "youtubei.js": "^9.4.0"
   }
