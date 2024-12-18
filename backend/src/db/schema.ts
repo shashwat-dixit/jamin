@@ -33,6 +33,8 @@ export const userSessions = pgTable("user_sessions", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+
+// will be used later. no use right now.
 export const userApiKeys = pgTable("user_api_keys", {
   id: uuid("id").defaultRandom().primaryKey(),
   userId: uuid("user_id").references(() => users.id),
@@ -89,7 +91,6 @@ export const messages = pgTable("messages", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-// merge research paper with this.
 export const pdfs = pgTable("pdfs", {
   id: uuid("id").defaultRandom().primaryKey(),
   userId: uuid("user_id").references(() => users.id),
@@ -108,18 +109,6 @@ export const images = pgTable("images", {
   url: text("url").notNull(),
   metadata: jsonb("metadata"),
   createdAt: timestamp("created_at").defaultNow(),
-});
-
-export const researchPapers = pgTable("research_papers", {
-  id: uuid("id").defaultRandom().primaryKey(),
-  userId: uuid("user_id").references(() => users.id),
-  title: text("title").notNull(),
-  authors: text("authors").notNull(),
-  content: text("content").notNull(),
-  analysis: text("analysis"),
-  aiModelId: uuid("ai_model_id").references(() => aiModels.id),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 export const documents = pgTable("documents", {
@@ -173,9 +162,6 @@ export type NewPdf = InferInsertModel<typeof pdfs>;
 
 export type Image = InferSelectModel<typeof images>;
 export type NewImage = InferInsertModel<typeof images>;
-
-export type ResearchPaper = InferSelectModel<typeof researchPapers>;
-export type NewResearchPaper = InferInsertModel<typeof researchPapers>;
 
 export type Document = InferSelectModel<typeof documents>;
 export type NewDocument = InferInsertModel<typeof documents>;
