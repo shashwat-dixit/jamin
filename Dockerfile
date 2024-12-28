@@ -1,25 +1,33 @@
-FROM node:20-bullseye-slim
+FROM node:20-bullseye-slim AS builder
 
-# Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
-COPY backend/package*.json ./
+# Copy entire backend first to ensure proper dependency resolution
+COPY backend/ .
 
 # Install dependencies
 RUN npm ci
 
-# Copy the backend source code
-COPY backend/ .
-
-# Run tests
+# Run tests in build stage
 RUN npm test
 
-# Build the app (if necessary)
+# Build the app
 RUN npm run build
 
-# Expose the port the app runs on
+# Production stage
+FROM node:20-bullseye-slim
+
+WORKDIR /usr/src/app
+
+# Copy package files
+COPY --from=builder /usr/src/app/package*.json ./
+
+# Install production dependencies only
+RUN npm ci --only=production
+
+# Copy built artifacts
+COPY --from=builder /usr/src/app/dist ./dist
+
 EXPOSE 3000
 
-# Define the command to run the app
 CMD ["npm", "start"]

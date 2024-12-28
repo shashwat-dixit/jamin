@@ -17,8 +17,6 @@
 
 Jamin AI is a comprehensive LLM Aggregator built with Node.js and Express backend, paired with a React (Vite) frontend. It seamlessly integrates multiple Large Language Models to help users process and analyze text files, YouTube videos, and handle complex question-answering tasks.
 
-<!-- ![Jamin AI Features](img/featureOverview.png) -->
-
 ## Features
 
 - 🤖 **Multi-LLM Integration**: Seamless access to OpenAI, Cohere, and Anthropic AI models
